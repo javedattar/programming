@@ -1,9 +1,3 @@
-/*
- * Copyright (c) 2018 Financial Engines, Inc. All Rights Reserved. Sunnyvale, CA
- *
- * File: ArrayBinarySearch.java Author: jattar
- */
-
 public class ArrayBinarySearch {
   private static int intArray[] = {
       10,
