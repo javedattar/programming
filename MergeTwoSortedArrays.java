@@ -24,7 +24,6 @@ public class MergeTwoSortedArrays {
   };
 
   public static int[] mergeArrays(int arr1[], int arr2[]) {
-    System.out.println("Merging");
     int i = 0, j = 0, k = 0;
     int totalLength = arr1.length + arr2.length;
     int resultArray[] = new int[totalLength];
@@ -42,11 +41,19 @@ public class MergeTwoSortedArrays {
     return resultArray;
   }
 
-
   public static void main(String[] args) {
     int[] mergeArrays = MergeTwoSortedArrays.mergeArrays(arr1, arr2);
+    System.out.println("Array 1");
+    for (int i : arr1) {
+      System.out.print(i + ", ");
+    }
+    System.out.println("\nArray 2");
+    for (int i : arr2) {
+      System.out.print(i + ", ");
+    }
+    System.out.println("\nMerged array");
     for (int i : mergeArrays) {
-      System.out.println(i);
+      System.out.print(i + ", ");
     }
   }
 }
