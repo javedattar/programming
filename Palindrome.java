@@ -1,11 +1,13 @@
 /**
+ * String palindrome check
+ * 
  * author: Javed Attar
  */
 
 public class Palindrome {
 
   /**
-   * This implementation uses character array for recurssion and processed that array.
+   * This implementation uses character array for recurssion and processes that array.
    * 
    * @param word
    * @return true if palindrome, false otherwise
