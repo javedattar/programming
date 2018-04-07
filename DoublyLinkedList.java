@@ -25,34 +25,44 @@ public class DoublyLinkedList {
     return root;
   }
 
-  public void print() {
-    _print(root);
+  public void insert(ListNode node) {
+    if (root == null) {
+      root = node;
+      tail = node;
+      return;
+    }
+    ListNode indexNode = root;
+    while (indexNode.next != null) {
+      indexNode = indexNode.next;
+    }
+    indexNode.next = node;
+    tail = node;
   }
 
-  private void _print(ListNode currentNode) {
-    if (currentNode == null) {
-      System.out.println("");
+  public void print() {
+    if (root == null) {
       return;
-    } else if (currentNode.prev != null) {
-      System.out.print(" <- ");
     }
-    System.out.print(currentNode.nodeValue + " -> ");
-    _print(currentNode.next);
+    ListNode indexNode = root;
+    do {
+      indexNode.print();
+      indexNode = indexNode.next;
+    } while (indexNode.next != null);
+    indexNode.print();
+    System.out.println();
   }
 
   public void printReverse() {
-    _printReverse(tail);
-  }
-
-  private void _printReverse(ListNode currentNode) {
-    if (currentNode == null) {
-      System.out.println("");
+    if (root == null) {
       return;
-    } else if (currentNode.next != null) {
-      System.out.print(" <- ");
     }
-    System.out.print(currentNode.nodeValue + " -> ");
-    _printReverse(currentNode.prev);
+    ListNode indexNode = tail;
+    do {
+      indexNode.print();
+      indexNode = indexNode.prev;
+    } while (indexNode.prev != null);
+    indexNode.print();
+    System.out.println();
   }
 
   public ListNode findNthElement(int elementPosition) {
@@ -108,6 +118,52 @@ public class DoublyLinkedList {
     return true;
   }
 
+  public ListNode find(int nodeValue) {
+    if (root == null) {
+      return null;
+    }
+    ListNode indexNode = root;
+    do {
+      if (nodeValue == indexNode.nodeValue) {
+        return indexNode;
+      }
+      indexNode = indexNode.next;
+    } while (indexNode.next != null);
+    if (nodeValue == indexNode.nodeValue) {
+      return indexNode;
+    }
+    return null;
+  }
+
+  public DoublyLinkedList clone() {
+    DoublyLinkedList dll = new DoublyLinkedList();
+    if (root == null) {
+      return dll;
+    }
+    ListNode indexNode = root;
+    do {
+      dll.insert(new ListNode(indexNode.nodeValue));
+      indexNode = indexNode.next;
+    } while (indexNode.next != null);
+    dll.insert(indexNode);
+    // reset to root
+    indexNode = root;
+    while (indexNode.next != null) {
+      if (indexNode.prev != null) {
+        ListNode clonedNode = dll.find(indexNode.nodeValue);
+        ListNode clonedPrevNode = dll.find(indexNode.prev.nodeValue);
+        clonedNode.prev = clonedPrevNode;
+      }
+      indexNode = indexNode.next;
+    }
+    if (indexNode.prev != null) {
+      ListNode clonedNode = dll.find(indexNode.nodeValue);
+      ListNode clonedPrevNode = dll.find(indexNode.prev.nodeValue);
+      clonedNode.prev = clonedPrevNode;
+    }
+    return dll;
+  }
+
   public static void main(String[] args) {
     DoublyLinkedList dll = new DoublyLinkedList();
     dll.insert(10);
@@ -116,7 +172,12 @@ public class DoublyLinkedList {
     dll.insert(40);
     dll.insert(50);
     dll.insert(60);
+    System.out.println("Original list >> ");
     dll.print();
+    System.out.println("Cloned list >> ");
+    DoublyLinkedList cloned = dll.clone();
+    cloned.print();
+    System.out.println("Reverse print list >> ");
     dll.printReverse();
     System.out.print("Find 4th element >> ");
     ListNode foundNode = dll.findNthElement(4);
@@ -139,6 +200,7 @@ public class DoublyLinkedList {
     dll.delete(60);
     System.out.print("List after deleting tail (60) >> ");
     dll.print();
+
   }
 
   private static void printResult(ListNode foundNode) {
