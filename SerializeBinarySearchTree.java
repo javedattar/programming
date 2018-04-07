@@ -1,4 +1,12 @@
 /**
+ * Serialize BST such a way that it can be deserialzed back to BST.
+ * 
+ * To serialize we are going to do level order traversing and add missing nodes as # instead of nulls. With this
+ * approach a BST becomes complete BST.
+ * 
+ * To deserialize create array out of serialized input string by tokenizing on comma. Every will have children
+ * either number or #, if number created node and add to tree. If # then don't create that node
+ * 
  * author: Javed Attar
  */
 
@@ -9,11 +17,12 @@ public class SerializeBinarySearchTree {
 
   public static String serialize(TreeNode root) {
     int level = 1;
-    while (level <= height(root)) {
+    int treeHeight = height(root);
+    while (level <= treeHeight) {
       _serialize(root, level);
       level++;
     }
-    System.out.println(serializedTree);
+    System.out.println("Serialized output >> " + serializedTree);
     return serializedTree;
   }
 
@@ -32,7 +41,6 @@ public class SerializeBinarySearchTree {
 
   public static TreeNode deserialize(String serializedTree) {
     String[] numbers = serializedTree.split(",");
-    System.out.println(numbers.length);
     TreeNode localRoot = new TreeNode(Integer.parseInt(numbers[0]));
     _addChildren(localRoot, 0, numbers);
     return localRoot;
@@ -73,6 +81,7 @@ public class SerializeBinarySearchTree {
     root.right.left = new TreeNode(6);
     String serializeTree = serialize(root);
     TreeNode deserializeRoot = deserialize(serializeTree);
+    System.out.println("Deserialzed output >> ");
     System.out.println(deserializeRoot.val);
     System.out.println(deserializeRoot.left.val);
     System.out.println(deserializeRoot.left.left.val);
