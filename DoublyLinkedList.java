@@ -1,23 +1,11 @@
 /**
- * Doubly linked list supports following function
- * Create list
- * insert element in list
- * find nth element in list from root
- * find nth element in list from tail i.e. reverse find
- * delete any element from list
+ * Doubly linked list supports following function Create list insert element in list find nth element in list from
+ * root find nth element in list from tail i.e. reverse find delete any element from list
+ * 
  * @author Javed Attar
  *
  */
 public class DoublyLinkedList {
-  class ListNode {
-    public ListNode(int value) {
-      nodeValue = value;
-    }
-
-    int nodeValue;
-    ListNode next, prev;
-
-  }
 
   private ListNode root;
   private ListNode tail;
