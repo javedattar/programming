@@ -1,4 +1,13 @@
-
+/**
+ * Doubly linked list supports following function
+ * Create list
+ * insert element in list
+ * find nth element in list from root
+ * find nth element in list from tail i.e. reverse find
+ * delete any element from list
+ * @author Javed Attar
+ *
+ */
 public class DoublyLinkedList {
   class ListNode {
     public ListNode(int value) {
@@ -121,20 +130,26 @@ public class DoublyLinkedList {
     dll.insert(60);
     dll.print();
     dll.printReverse();
+    System.out.print("Find 4th element >> ");
     ListNode foundNode = dll.findNthElement(4);
     printResult(foundNode);
+    System.out.print("Find 7th element >> ");
     foundNode = dll.findNthElement(7);
     printResult(foundNode);
+    System.out.print("Find 4th element from tail >> ");
     foundNode = dll.reverseFindNthElement(4);
     printResult(foundNode);
-    System.out.println("Delete from middle of list");
+    System.out.println("\n\nDelete 50 from list");
     dll.delete(50);
+    System.out.print("List after deleting 50 >> ");
     dll.print();
     System.out.println("Delete root");
     dll.delete(10);
+    System.out.print("List after deleting root (10) >> ");
     dll.print();
     System.out.println("Delete tail");
     dll.delete(60);
+    System.out.print("List after deleting tail (60) >> ");
     dll.print();
   }
 
