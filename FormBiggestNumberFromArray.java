@@ -46,7 +46,7 @@ public class FormBiggestNumberFromArray {
       public int compare(String x, String y) {
         String xy = x + y;
         String yx = y + x;
-        return xy.compareTo(yx) * -1;
+        return yx.compareTo(xy);
       }
 
     });
