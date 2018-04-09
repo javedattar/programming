@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * Bubble sort bubbles each number to
  * 
@@ -13,13 +15,10 @@ public class BubbleSort {
           int temp = arr[j];
           arr[j] = arr[j + 1];
           arr[j + 1] = temp;
+          System.out.println(String.format("bubble %d => %s", arr[j + 1], Arrays.toString(arr)));
         }
       }
-      System.out.println("Pass " + (i + 1));
-      for (int k : arr) {
-        System.out.print(k + " ");
-      }
-      System.out.println("");
+      System.out.println(String.format("Pass %d array state => %s", i + 1, Arrays.toString(arr)));
     }
   }
 
@@ -34,9 +33,7 @@ public class BubbleSort {
         1
     };
     BubbleSort.sort(arr);
-    System.out.println("Sorted Array >>");
-    for (int i : arr) {
-      System.out.print(i + " ");
-    }
+    System.out.println(String.format("Sorted Array >> %s", Arrays.toString(arr)));
+
   }
 }
