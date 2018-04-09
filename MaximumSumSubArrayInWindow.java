@@ -10,7 +10,7 @@ public class MaximumSumSubArrayInWindow {
 
   private static int[] findSubArray(int[] inputArray, int numberOfElementsInSubArray) {
     int sum = 0;
-    // Default copy first n elements to output array
+    // Default copy first given target window elements to output array
     int[] outputArray = new int[numberOfElementsInSubArray];
     for (int k = 0; k < outputArray.length; k++) {
       outputArray[k] = inputArray[k];
