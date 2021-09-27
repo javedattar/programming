@@ -38,7 +38,7 @@ public class BinarySearchTree {
 
   private TreeNode _search(TreeNode currentNode, int searchValue) {
     if (currentNode == null) {
-      System.out.println("Didn't find what you are looking for");
+      System.out.println("Couldn't find the number " + searchValue);
       return currentNode;
     }
     if (searchValue == currentNode.nodeValue) {
@@ -90,7 +90,7 @@ public class BinarySearchTree {
     bsTree.insert(70);
     bsTree.insert(55);
     bsTree.insert(58);
-    System.out.println(bsTree.root.nodeValue);
+    System.out.println("Root Node >> " + bsTree.root.nodeValue);
     bsTree.search(20);
     bsTree.search(58);
     bsTree.search(99);
