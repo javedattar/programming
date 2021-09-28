@@ -28,6 +28,18 @@ public class ArrayBinarySearch {
       10999
   };
   private static int counter = 1;
+  
+  /**
+   * This algorithm assumes array is sorted which makes it efficient search algorithm
+   * 
+   * Time: O(log n)
+   * Space: O(n)
+   * 
+   * @param searchTarget target element to search
+   * @param lo lower index of an array
+   * @param hi higher index of an array
+   * @return
+   */
 
   private static int search(int searchTarget, int lo, int hi) {
 
@@ -57,6 +69,9 @@ public class ArrayBinarySearch {
     counter = 1;
     result = search(10, 0, intArray.length - 1);
     printResult(result, 10);
+    counter = 1;
+    result = search(199, 0, intArray.length - 1);
+    printResult(result, 199);
   }
 
   private static void printResult(int result, int targetNum) {

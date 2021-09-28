@@ -9,6 +9,9 @@ import java.util.List;
  * numbers are {54, 546, 548, 60}, the arrangement 6054854654 gives the largest value. And if the given numbers are
  * {1, 34, 3, 98, 9, 76, 45, 4}, then the arrangement 998764543431 gives the largest value.
  * 
+ * Approach: Sort array with custom comparator that will compare concatenated strings of elements to decide order
+ * and then join elements an array to create largest number
+ * 
  * author: Javed Attar
  */
 

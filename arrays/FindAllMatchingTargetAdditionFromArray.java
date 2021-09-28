@@ -9,6 +9,9 @@ import java.util.Map;
  * 
  * Example: { 1, 5, 4, 6, 7, 3, 7 } and target sum is 9 then should print [3,6] and [4,5]
  * 
+ * Time: O(n) where n is number of elements in an array
+ * Space: O(n) 
+ * 
  * author: Javed Attar
  */
 
@@ -21,17 +24,19 @@ public class FindAllMatchingTargetAdditionFromArray {
         6,
         7,
         3,
-        7
+        8
     };
     System.out.println("Input Array >> " + Arrays.toString(inputArray));
     findMatches(inputArray, 7);
-    findMatches(inputArray, 9);
+    findMatches(inputArray, 11);
   }
 
   private static void findMatches(int[] inputArray, int target) {
     System.out.println("Target >> " + target);
+    
     Map<Integer, Integer> mapPossibleTargets = new HashMap<>();
     Map<Integer, Integer> mapResultOutput = new HashMap<>();
+    
     for (int i = 0; i < inputArray.length; i++) {
       if (mapPossibleTargets.containsKey(inputArray[i])) {
         mapResultOutput.put(inputArray[i], mapPossibleTargets.get(inputArray[i]));
@@ -39,6 +44,8 @@ public class FindAllMatchingTargetAdditionFromArray {
         mapPossibleTargets.put(target - inputArray[i], inputArray[i]);
       }
     }
+    System.out.println("mapPossibleTargets size >>" + mapPossibleTargets.size());
+    System.out.println("mapResultOutput size >>" + mapResultOutput.size());
     mapResultOutput.entrySet().stream().forEach(entrySet -> {
       System.out.println(String.format("[%d,%d]", entrySet.getKey(), entrySet.getValue()));
     });
