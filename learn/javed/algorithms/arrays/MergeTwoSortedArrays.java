@@ -1,26 +1,15 @@
+package learn.javed.algorithms.arrays;
+
 /**
  * author: Javed Attar
  */
 
 public class MergeTwoSortedArrays {
   static int arr1[] = {
-      1,
-      3,
-      5,
-      7,
-      9,
-      11,
-      12,
-      13,
-      14,
-      15
+      1, 3, 5, 7, 9, 11, 12, 13, 14, 15
   };
   static int arr2[] = {
-      2,
-      4,
-      6,
-      8,
-      10
+      2, 4, 6, 8, 10
   };
 
   public static int[] mergeArrays(int arr1[], int arr2[]) {

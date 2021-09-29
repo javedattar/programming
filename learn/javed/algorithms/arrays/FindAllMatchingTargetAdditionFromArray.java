@@ -1,3 +1,5 @@
+package learn.javed.algorithms.arrays;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,8 +11,7 @@ import java.util.Map;
  * 
  * Example: { 1, 5, 4, 6, 7, 3, 7 } and target sum is 9 then should print [3,6] and [4,5]
  * 
- * Time: O(n) where n is number of elements in an array
- * Space: O(n) 
+ * Time: O(n) where n is number of elements in an array Space: O(n)
  * 
  * author: Javed Attar
  */
@@ -18,13 +19,7 @@ import java.util.Map;
 public class FindAllMatchingTargetAdditionFromArray {
   public static void main(String[] args) {
     int[] inputArray = {
-        1,
-        5,
-        4,
-        6,
-        7,
-        3,
-        8
+        1, 5, 4, 6, 7, 3, 8
     };
     System.out.println("Input Array >> " + Arrays.toString(inputArray));
     findMatches(inputArray, 7);
@@ -33,10 +28,10 @@ public class FindAllMatchingTargetAdditionFromArray {
 
   private static void findMatches(int[] inputArray, int target) {
     System.out.println("Target >> " + target);
-    
+
     Map<Integer, Integer> mapPossibleTargets = new HashMap<>();
     Map<Integer, Integer> mapResultOutput = new HashMap<>();
-    
+
     for (int i = 0; i < inputArray.length; i++) {
       if (mapPossibleTargets.containsKey(inputArray[i])) {
         mapResultOutput.put(inputArray[i], mapPossibleTargets.get(inputArray[i]));

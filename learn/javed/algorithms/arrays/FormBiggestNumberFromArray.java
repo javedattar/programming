@@ -1,3 +1,5 @@
+package learn.javed.algorithms.arrays;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,22 +20,11 @@ import java.util.List;
 public class FormBiggestNumberFromArray {
   public static void main(String[] args) {
     int[] inputArray = {
-        1,
-        34,
-        3,
-        98,
-        9,
-        76,
-        45,
-        4
+        1, 34, 3, 98, 9, 76, 45, 4
     };
     printLargestNumber(inputArray);
     inputArray = new int[] {
-        45,
-        36,
-        7,
-        75,
-        12
+        45, 36, 7, 75, 12
     };
     printLargestNumber(inputArray);
   }

@@ -1,3 +1,5 @@
+package learn.javed.algorithms.list;
+
 /**
  * author: Javed Attar
  */

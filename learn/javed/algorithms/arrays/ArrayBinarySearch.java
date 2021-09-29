@@ -1,3 +1,5 @@
+package learn.javed.algorithms.arrays;
+
 public class ArrayBinarySearch {
   private static int intArray[] = {
       10,
@@ -28,12 +30,11 @@ public class ArrayBinarySearch {
       10999
   };
   private static int counter = 1;
-  
+
   /**
    * This algorithm assumes array is sorted which makes it efficient search algorithm
    * 
-   * Time: O(log n)
-   * Space: O(n)
+   * Time: O(log n) Space: O(n)
    * 
    * @param searchTarget target element to search
    * @param lo lower index of an array
