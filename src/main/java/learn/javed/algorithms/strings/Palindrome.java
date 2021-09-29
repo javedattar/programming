@@ -1,3 +1,5 @@
+package learn.javed.algorithms.strings;
+
 /**
  * String palindrome check
  * 
@@ -7,7 +9,7 @@
 public class Palindrome {
 
   /**
-   * This implementation uses character array for recurssion and processes that array.
+   * This implementation uses character array for recursion and processes that array.
    * 
    * @param word
    * @return true if palindrome, false otherwise
@@ -22,7 +24,7 @@ public class Palindrome {
   }
 
   /**
-   * This implementation uses String for recurssion with constantly shrinking string by eleminating first and last
+   * This implementation uses String for recursion with constantly shrinking string by eliminating first and last
    * matching chars
    * 
    * @param word

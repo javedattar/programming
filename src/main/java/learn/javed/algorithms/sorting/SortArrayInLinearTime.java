@@ -1,22 +1,12 @@
+package learn.javed.algorithms.sorting;
+
 /**
  * Given Array of zeros, ones and negetive ones Sort this array in linear time author: Javed Attar
  */
 
 public class SortArrayInLinearTime {
   static int inputArray[] = {
-      0,
-      1,
-      -1,
-      0,
-      -1,
-      1,
-      1,
-      -1,
-      0,
-      0,
-      1,
-      1,
-      1
+      0, 1, -1, 0, -1, 1, 1, -1, 0, 0, 1, 1, 1
   };
 
   public static int[] sort(int[] inputArray) {

@@ -1,3 +1,5 @@
+package learn.javed.algorithms.tree;
+
 /**
  * Serialize BST such a way that it can be deserialzed back to BST.
  * 

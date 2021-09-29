@@ -1,3 +1,5 @@
+package learn.javed.algorithms.sorting;
+
 import java.util.Arrays;
 
 /**
@@ -25,13 +27,7 @@ public class InsertionSort {
 
   public static void main(String[] args) {
     int[] arr = {
-        4,
-        6,
-        7,
-        3,
-        2,
-        5,
-        1
+        4, 6, 7, 3, 2, 5, 1
     };
     InsertionSort.sort(arr);
     System.out.println(String.format("Sorted Array >> %s", Arrays.toString(arr)));

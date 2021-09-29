@@ -1,3 +1,5 @@
+package learn.javed.algorithms.sorting;
+
 import java.util.Arrays;
 
 /**
@@ -13,15 +15,7 @@ public class MergeSort {
 
   public static void main(String[] args) {
     int[] arr = {
-        4,
-        9,
-        6,
-        7,
-        3,
-        8,
-        2,
-        5,
-        1,
+        4, 9, 6, 7, 3, 8, 2, 5, 1,
     };
     System.out.println(String.format("Input Array >> %s\n", Arrays.toString(arr)));
     arr = sort(arr);

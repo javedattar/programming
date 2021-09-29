@@ -1,3 +1,5 @@
+package learn.javed.algorithms.strings;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
