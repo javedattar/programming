@@ -5,6 +5,8 @@ import java.util.Arrays;
 /**
  * Bubble sort bubbles each number to
  * 
+ * Time: O(n^2) Space O(n)
+ * 
  * author: Javed Attar
  */
 
@@ -17,6 +19,8 @@ public class BubbleSort {
           int temp = arr[j];
           arr[j] = arr[j + 1];
           arr[j + 1] = temp;
+          System.out.println(String.format("bubble %d => %s", arr[j + 1], Arrays.toString(arr)));
+        } else {
           System.out.println(String.format("bubble %d => %s", arr[j + 1], Arrays.toString(arr)));
         }
       }

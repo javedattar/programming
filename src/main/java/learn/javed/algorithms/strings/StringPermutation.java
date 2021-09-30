@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * Given a string find out all possible combination of letters in string.
  * 
- * Example: for input string ABC possible combinations are ABC, ACB, CAB, BAC, BCA, CBA Possible pemutations in
+ * Example: for input string ABC possible combinations are ABC, ACB, CAB, BAC, BCA, CBA Possible permutations in
  * this case are n factorial (n!) where n is length of string.
  * 
  * author: Javed Attar
@@ -38,7 +38,7 @@ public class StringPermutation {
 
   public static void main(String[] args) {
     counter = 0;
-    permuteString("abc", "");
+    permuteString("abcd", "");
     System.out.println("Total no of permutations:>> " + counter);
     List<String> lst = new ArrayList<>();
     lst.add("45");
