@@ -14,13 +14,13 @@ public class InsertionSort {
     for (int i = 1; i < arr.length; i++) {
       int holeValue = arr[i];
       System.out.println(String.format("hole value => %d ", holeValue));
-      int hole = i;
-      while (hole > 0 && arr[hole - 1] > holeValue) {
-        arr[hole] = arr[hole - 1];
-        hole = hole - 1;
-        System.out.println(String.format("new hole index => %d array state => %s", hole, Arrays.toString(arr)));
+      int holeIndex = i;
+      while (holeIndex > 0 && arr[holeIndex - 1] > holeValue) {
+        arr[holeIndex] = arr[holeIndex - 1];
+        holeIndex = holeIndex - 1;
+        System.out.println(String.format("new hole index => %d array state => %s", holeIndex, Arrays.toString(arr)));
       }
-      arr[hole] = holeValue;
+      arr[holeIndex] = holeValue;
       System.out.println(String.format("Pass %d array state => %s", i, Arrays.toString(arr)));
     }
   }
