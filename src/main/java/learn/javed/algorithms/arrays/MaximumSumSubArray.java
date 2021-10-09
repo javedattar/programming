@@ -12,8 +12,8 @@ import java.util.Arrays;
  * previous max if current max is greater than it. If current max goes below 0 reset it to 0.
  * </p>
  * 
- * Time: O(n) + O(length of sub-array), since n is dominating, O(n) and worst case O(2n) Space: O(n) + O(length of
- * sub-array), since n is dominating, O(n)
+ * Time: O(n) + O(length of sub-array), since n is dominating, O(n) and worst case O(2n) 
+ * Space: O(n) + O(length of sub-array), since n is dominating, O(n)
  * 
  * author: Javed Attar
  */
