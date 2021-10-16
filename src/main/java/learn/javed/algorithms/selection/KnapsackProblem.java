@@ -12,12 +12,14 @@ public class KnapsackProblem {
 	 * weight is less than or equals to
 	 * given limit / capacity and total value is as large as possible.
 	 * 
-	 * WeightValue[][] = {{2lbs, $2}, {4lbs, $10}, {12lbs, $4}, {1lb, $1}}
+	 * Pick every item only once.
 	 * 
-	 * Given above input total value for limit of 7lbs is $13 ({2lbs,$2},
+	 * WeightValue[][] = {{2lbs, $4}, {4lbs, $10}, {12lbs, $4}, {1lb, $1}, {5lbs, $8}}
+	 * 
+	 * Given above input total value for limit of 7lbs is $15 ({2lbs,$4},
 	 * {4lbs,$10}, {1lb, $1})
-	 * Given above input total value for limit of 10lbs is $22 (2x{4lbs, $10},
-	 * {2lbs, $2})
+	 * Given above input total value for limit of 10lbs is $19 ({4lbs, $10},
+	 * {1lbs, $1}, {5lbs, $8})
 	 * 
 	 * @param args
 	 */
