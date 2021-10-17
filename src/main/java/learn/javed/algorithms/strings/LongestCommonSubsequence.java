@@ -28,6 +28,8 @@ public class LongestCommonSubsequence {
 	 * For example, "ace" is a subsequence of "abcde".
 	 * A common subsequence of two strings is a subsequence that is common to both
 	 * strings.
+	 * Example: text1=abcde and text2=asdfce
+	 * Common Subsequence = ace, length 3
 	 * 
 	 * @constraints:
 	 *               Length of strings is less than 1000
