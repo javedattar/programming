@@ -30,6 +30,9 @@ public class LongestCommonSubsequence {
 	 * strings.
 	 * Example: text1=abcde and text2=asdfce
 	 * Common Subsequence = ace, length 3
+	 * Complexity:
+	 * Time : O(m * n)
+	 * Space : O(m+1 * n+1)
 	 * 
 	 * @constraints:
 	 *               Length of strings is less than 1000
@@ -44,12 +47,6 @@ public class LongestCommonSubsequence {
 		int m = s1.length();
 		int n = s2.length();
 		int[][] matrix = new int[m + 1][n + 1];
-//        for(int i=0;i<m+1;i++){
-//            for(int j=0;j<n+1;j++){
-//                if(i==0||j==0)
-//                    matrix[i][j]=0;
-//            }
-//        }
 		for (int i = 1; i < m + 1; i++) {
 			for (int j = 1; j < n + 1; j++) {
 				if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
@@ -59,7 +56,8 @@ public class LongestCommonSubsequence {
 
 				}
 			}
-			System.out.println(Arrays.deepToString(matrix));
+			System.out.println("Iteration No >> " + i);
+			System.out.println(Arrays.deepToString(matrix).replace("],", "],\n"));
 		}
 		return matrix[m][n];
 	}
