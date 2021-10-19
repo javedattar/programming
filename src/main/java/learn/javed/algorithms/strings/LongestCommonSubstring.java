@@ -6,24 +6,32 @@ package learn.javed.algorithms.strings;
 public class LongestCommonSubstring {
 
 	public static void main(String[] args) {
-		int result = lengthCommonSubString("abcd", "");
+		System.out.println("Common substring length >> " + lengthCommonSubString("abcd", "xbc"));
 
 	}
 
 	private static int lengthCommonSubString(String s1, String s2) {
-		int i = s1.length() - 1, j = 0, max = 0;
-		while (i > 0) {
-			String temp = s1.substring(0, i);
-			int k = 0;
-			while (k < temp.length() || j < s2.length()) {
-				if (temp.substring(k, i).equals(s2.substring(j))) {
-					Math.max(max, temp.substring(k, i).length());
+		String shortString = s1.length() > s2.length() ? s2 : s1;
+		String longString = s1.length() < s2.length() ? s2 : s1;
+		int sStart = 0, sEnd = 0;
+		int lStart = 0, lEnd = 0;
+		int max = 0;
+		while (sStart < shortString.length() && sEnd < shortString.length()) {
+			while (sEnd < shortString.length() && lStart < longString.length()) {
+				if (shortString.substring(sStart, sEnd).equals(longString.substring(lStart, lStart + sEnd))) {
+					sEnd++;
+					max = Math.max(max, sEnd - sStart);
+				} else {
+					lStart++;
 				}
-				k++;
 			}
+			if(sEnd < shortString.length())
+				sStart++;
+			lStart = 0;
 
 		}
-		return 0;
+		System.out.println("Common substring >> " + shortString.substring(sStart, sEnd));
+		return max;
 	}
 
 }
