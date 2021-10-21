@@ -40,6 +40,8 @@ public class BuySellStock {
 				"BuySellStock max profit multiple transactions 2 >> " + maxProfitMultipleTransactions2(prices2));
 		System.out.println(
 				"BuySellStock max profit multiple transactions 2 >> " + maxProfitMultipleTransactions2(prices3));
+		prices3 = new int[] { 3, 2, 6, 5, 0, 3 };
+		System.out.println("BuySellStock max profit K transactions >> " + maxProfitKTransactions(2, prices3));
 
 	}
 
@@ -93,6 +95,22 @@ public class BuySellStock {
 			if (prices[i - 1] < prices[i]) {
 				// Sell when current price is greater than previous
 				max += prices[i] - prices[i - 1];
+			}
+		}
+
+		return max;
+	}
+
+	// Time: O(n)
+	private static int maxProfitKTransactions(int k, int[] prices) {
+		int max = 0, min = Integer.MAX_VALUE;
+
+		for (int i = 1; i < prices.length; i++) {
+			min = Math.min(min, prices[i]);
+			if (prices[i - 1] < prices[i] && k != 0) {
+				max += (prices[i] - min);
+				min = prices[i];
+				k--;
 			}
 		}
 
