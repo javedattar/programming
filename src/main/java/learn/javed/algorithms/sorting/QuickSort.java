@@ -55,4 +55,8 @@ public class QuickSort {
 		return outArr;
 	}
 
+	private static int[] sort2(int[] arr) {
+		return arr;
+	}
+
 }
