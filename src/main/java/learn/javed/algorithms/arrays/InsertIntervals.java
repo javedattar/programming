@@ -25,29 +25,26 @@ public class InsertIntervals {
 	}
 
 	public static int[][] insert(int[][] intervals, int[] newInterval) {
-		List<List<Integer>> result = new ArrayList<>();
+		List<int[]> result = new ArrayList<>();
 		int i = 0;
 		while (i < intervals.length && intervals[i][1] < newInterval[0]) {
-			result.add(Arrays.asList(intervals[i][0], intervals[i][1]));
+			result.add(intervals[i]);
 			i++;
 		}
-
-		while (i < intervals.length && intervals[i][0] <= newInterval[1]) {
-			newInterval[0] = Math.min(intervals[i][0], newInterval[0]);
-			newInterval[1] = Math.max(intervals[i][1], newInterval[1]);
-			i++;
-		}
-		result.add(Arrays.asList(newInterval[0], newInterval[1]));
 		while (i < intervals.length) {
-			result.add(Arrays.asList(intervals[i][0], intervals[i][1]));
-			i++;
-		}
-		int[][] outIntervals = new int[result.size()][2];
-		for (int j = 0; j < result.size(); j++) {
-			outIntervals[j] = new int[] { result.get(j).get(0), result.get(j).get(1) };
+
+			if (newInterval[1] >= intervals[i][0]) {
+				newInterval[1] = Math.max(intervals[i][1], newInterval[1]);
+				i++;
+			} else {
+				result.add(newInterval);
+				newInterval = intervals[i];
+				i++;
+			}
 		}
 
-		return outIntervals;
+		result.add(newInterval);
+		return result.toArray(new int[result.size()][]);
 
 	}
 }

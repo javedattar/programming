@@ -12,26 +12,26 @@ public class MergeIntervals {
 	public static void main(String[] args) {
 		int[][] intervals = { { 2, 6 }, { 1, 3 }, { 5, 7 }, { 8, 9 }, { 12, 16 } };
 		System.out.println("intervals >> " + Arrays.deepToString(intervals));
-		System.out.println(Arrays.deepToString(insert(intervals)));
+		System.out.println(Arrays.deepToString(merge(intervals)));
 		intervals = new int[][] { { 1, 3 }, { 2, 6 }, { 5, 7 }, { 8, 9 }, { 12, 16 } };
 		System.out.println("intervals >> " + Arrays.deepToString(intervals));
-		System.out.println(Arrays.deepToString(insert(intervals)));
+		System.out.println(Arrays.deepToString(merge(intervals)));
 		intervals = new int[][] { { 1, 4 }, { 0, 2 }, { 3, 5 } };
 		System.out.println("intervals >> " + Arrays.deepToString(intervals));
-		System.out.println(Arrays.deepToString(insert(intervals)));
+		System.out.println(Arrays.deepToString(merge(intervals)));
 		intervals = new int[][] { { 1, 4 }, { 0, 0 } };
 		System.out.println("intervals >> " + Arrays.deepToString(intervals));
-		System.out.println(Arrays.deepToString(insert(intervals)));
+		System.out.println(Arrays.deepToString(merge(intervals)));
 		intervals = new int[][] { { 2, 3 }, { 2, 2 }, { 3, 3 }, { 1, 3 }, { 5, 7 }, { 2, 2 }, { 4, 6 } };
 		System.out.println("intervals >> " + Arrays.deepToString(intervals));
-		System.out.println(Arrays.deepToString(insert(intervals)));
+		System.out.println(Arrays.deepToString(merge(intervals)));
 		intervals = new int[][] { { 1, 3 }, { 2, 6 }, { 8, 10 }, { 15, 18 } };
 		System.out.println("intervals >> " + Arrays.deepToString(intervals));
-		System.out.println(Arrays.deepToString(insert(intervals)));
+		System.out.println(Arrays.deepToString(merge(intervals)));
 
 	}
 
-	public static int[][] insert(int[][] intervals) {
+	public static int[][] merge(int[][] intervals) {
 		Arrays.sort(intervals, (x, y) -> x[0] - y[0]);
 		List<int[]> result = new ArrayList<>();
 		int i = 1;
