@@ -3,10 +3,8 @@
 */
 package learn.javed.algorithms.arrays;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 /**
@@ -70,41 +68,40 @@ public class RottingOranges {
 		if (freshCount == 0)
 			return 0;
 
-		int x = grid.length, y = grid[0].length;
-		List<Node> nextMinuteOranges = new ArrayList<>();
-		while (!rottingQueue.isEmpty()) {
+		int x = grid.length, y = grid[0].length, rottenOrangesSize = rottingQueue.size();
+		while (!rottingQueue.isEmpty() && rottenOrangesSize > 0) {
 			Node ro = rottingQueue.poll();
 			// find adjacent for x, y => [x,y-1], [x,y+1], [x-1, y], [x+1, y]
 			// see if any of them are fresh oranges, reset them to rotten and add to queue
 
 			// Left node
 			if (ro.getY() - 1 >= 0 && grid[ro.getX()][ro.getY() - 1] == 1) {
-				nextMinuteOranges.add(new Node(ro.getX(), ro.getY() - 1));
+				rottingQueue.add(new Node(ro.getX(), ro.getY() - 1));
 				grid[ro.getX()][ro.getY() - 1] = 2;
 				freshCount--;
 			}
 			// Right node
 			if (ro.getY() + 1 < y && grid[ro.getX()][ro.getY() + 1] == 1) {
-				nextMinuteOranges.add(new Node(ro.getX(), ro.getY() + 1));
+				rottingQueue.add(new Node(ro.getX(), ro.getY() + 1));
 				grid[ro.getX()][ro.getY() + 1] = 2;
 				freshCount--;
 			}
 			// Top Node
 			if (ro.getX() - 1 >= 0 && grid[ro.getX() - 1][ro.getY()] == 1) {
-				nextMinuteOranges.add(new Node(ro.getX() - 1, ro.getY()));
+				rottingQueue.add(new Node(ro.getX() - 1, ro.getY()));
 				grid[ro.getX() - 1][ro.getY()] = 2;
 				freshCount--;
 			}
 			// Bottom Node
 			if (ro.getX() + 1 < x && grid[ro.getX() + 1][ro.getY()] == 1) {
-				nextMinuteOranges.add(new Node(ro.getX() + 1, ro.getY()));
+				rottingQueue.add(new Node(ro.getX() + 1, ro.getY()));
 				grid[ro.getX() + 1][ro.getY()] = 2;
 				freshCount--;
 			}
+			rottenOrangesSize--;
 
-			if (rottingQueue.isEmpty() && !nextMinuteOranges.isEmpty()) {
-				rottingQueue.addAll(nextMinuteOranges);
-				nextMinuteOranges.clear();
+			if (!rottingQueue.isEmpty() && rottenOrangesSize == 0) {
+				rottenOrangesSize = rottingQueue.size();
 				minutes++;
 			}
 
