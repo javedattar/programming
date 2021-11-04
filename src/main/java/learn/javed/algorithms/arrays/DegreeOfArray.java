@@ -19,16 +19,18 @@ public class DegreeOfArray {
 		Map<Integer, Integer> ds = new HashMap<>();
 		for (int num : nums) {
 			ds.put(num, ds.getOrDefault(num, 0) + 1);
-//			maxFreq = Math.max(maxFreq, ds.get(num));
+			// maxFreq = Math.max(maxFreq, ds.get(num));
 		}
 		maxFreq = Collections.max(ds.values());
 		for (Integer key : ds.keySet()) {
 			if (ds.get(key) == maxFreq) {
 				i = 0;
 				j = nums.length - 1;
+				// Find left most index in array for the key
 				while (i <= j && nums[i] != key) {
 					i++;
 				}
+				// Find right most index in array for the key
 				while (j >= 0 && nums[j] != nums[i]) {
 					j--;
 				}
