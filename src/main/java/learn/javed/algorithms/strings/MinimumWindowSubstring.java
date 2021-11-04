@@ -56,7 +56,7 @@ public class MinimumWindowSubstring {
 		MinimumWindowSubstring mws = new MinimumWindowSubstring();
 		System.out.println("For given input s=ADOBECODEBANC and t=ABC expected \"BANC\" and actual >> "
 				+ mws.minWindow("ADOBECODEBANC", "ABC"));
-		System.out.println("For given input s=ADOBECODEANC and t=ABC expected \"BANC\" and actual >> "
+		System.out.println("For given input s=ADOBECODEANC and t=ABC expected \"ADOBEC\" and actual >> "
 				+ mws.minWindow("ADOBECODEANC", "ABC"));
 		System.out.println("For given input s=A and t=AA expected \"\" and actual >> " + mws.minWindow("A", "AA"));
 		System.out.println("For given input s=A and t=A expected \"A\" and actual >> " + mws.minWindow("A", "A"));
