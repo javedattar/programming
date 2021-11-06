@@ -167,8 +167,9 @@ public class RottingOranges {
 			// see if any of them are fresh oranges, reset them to rotten and add to queue
 
 			// Left node
-			int y = ro % (grid[0].length);
-			int x = ro - y / (grid[0].length);
+			int y = ro % (grid[0].length) - 1 ;
+			y = y < 0 ? 0: y;
+			int x = (ro - y) / (grid[0].length);
 
 			if (y - 1 >= 0 && grid[x][y - 1] == 1) {
 				rottingQueue.add(ro - 1);
