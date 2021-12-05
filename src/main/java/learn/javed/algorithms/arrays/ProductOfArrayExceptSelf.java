@@ -31,7 +31,7 @@ public class ProductOfArrayExceptSelf {
 
 	public int[] multiply(int[] nums) {
 		int[] answer = new int[nums.length];
-		if (nums.length < 2 && nums.length > 100000) {
+		if (nums.length < 2 || nums.length > 100000) {
 			return answer;
 		}
 		int arrProduct = 1, skippedZeros = 0;
@@ -53,7 +53,7 @@ public class ProductOfArrayExceptSelf {
 
 	public int[] multiply2(int[] nums) {
 		int[] answer = new int[nums.length];
-		if (nums.length < 2 && nums.length > 100000) {
+		if (nums.length < 2 || nums.length > 100000) {
 			return answer;
 		}
 		int arrProduct = 1, skippedZeros = 0, i = 0, j = nums.length - 1;
@@ -82,6 +82,24 @@ public class ProductOfArrayExceptSelf {
 			answer[j] = skippedZeros == 1 && nums[j] != 0 ? 0 : nums[j] == 0 ? arrProduct : arrProduct / nums[j];
 			i++;
 			j--;
+		}
+		return answer;
+	}
+
+	/**
+	 * Without division
+	 * 
+	 * @param nums
+	 * @return
+	 */
+	public int[] multiply3(int[] nums) {
+		int[] answer = new int[nums.length];
+		int[] right = new int[nums.length];
+		if (nums.length < 2 || nums.length > 100000) {
+			return answer;
+		}
+		for (int i = 0; i < nums.length; i++) {
+
 		}
 		return answer;
 	}

@@ -3,9 +3,10 @@
 */
 package learn.javed.algorithms.arrays;
 
-public abstract class FindAllDuplicatesInArray {
+public class WarmestDay {
 
 	public static void main(String[] args) {
+		// TODO Auto-generated method stub
 
 	}
 
