@@ -6,31 +6,28 @@ package learn.javed.algorithms.strings;
 public class LongestCommonSubstring {
 
 	public static void main(String[] args) {
-		System.out.println("Common substring length >> " + lengthCommonSubString("abcd", "xbc"));
+		System.out.println("Common substring length >> " + find("abcd", "xbc"));
+		System.out.println("Common substring length >> " + find("thisisaJavedFromVadgaon", "Javed"));
 
 	}
 
-	private static int lengthCommonSubString(String s1, String s2) {
-		String shortString = s1.length() > s2.length() ? s2 : s1;
-		String longString = s1.length() < s2.length() ? s2 : s1;
-		int sStart = 0, sEnd = 0;
-		int lStart = 0, lEnd = 0;
+	public static int find(String x, String y) {
 		int max = 0;
-		while (sStart < shortString.length() && sEnd < shortString.length()) {
-			while (sEnd < shortString.length() && lStart < longString.length()) {
-				if (shortString.substring(sStart, sEnd).equals(longString.substring(lStart, lStart + sEnd))) {
-					sEnd++;
-					max = Math.max(max, sEnd - sStart);
-				} else {
-					lStart++;
-				}
-			}
-			if(sEnd < shortString.length())
-				sStart++;
-			lStart = 0;
 
+		if (x == null || x.length() == 0 || y == null || y.length() == 0)
+			return 0;
+
+		int[][] dp = new int[x.length() + 1][y.length() + 1];
+
+		for (int i = 1; i < dp.length; i++) {
+			for (int j = 1; j < dp[0].length; j++) {
+				if (x.charAt(i - 1) == y.charAt(j - 1))
+					dp[i][j] = dp[i - 1][j - 1] + 1;
+
+				max = Math.max(max, dp[i][j]);
+			}
 		}
-		System.out.println("Common substring >> " + shortString.substring(sStart, sEnd));
+
 		return max;
 	}
 

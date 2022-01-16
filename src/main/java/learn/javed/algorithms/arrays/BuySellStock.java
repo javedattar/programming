@@ -1,7 +1,7 @@
 /**
 * author: Javed Attar
 */
-package learn.javed.algorithms.dp;
+package learn.javed.algorithms.arrays;
 
 /**
  * You are given an array prices where prices[i] is the price of a given stock
