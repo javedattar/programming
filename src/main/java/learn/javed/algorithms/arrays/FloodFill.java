@@ -3,7 +3,9 @@
 */
 package learn.javed.algorithms.arrays;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -14,6 +16,20 @@ public class FloodFill {
 		System.out.println(Arrays.deepToString(f.floodFill(new int[][] { { 0, 0, 0 }, { 0, 1, 1 } }, 1, 1, 2)));
 		System.out.println(Arrays.deepToString(f.floodFill(new int[][] { { 0, 0, 0 }, { 0, 1, 1 } }, 1, 1, 1)));
 		System.out.println(Arrays.deepToString(f.floodFill(new int[][] { { 0, 0, 0 }, { 0, 0, 0 } }, 1, 1, 3)));
+
+		System.out
+				.println(Arrays.deepToString(f.floodFillRecurssion(new int[][] { { 0, 0, 0 }, { 0, 1, 1 } }, 1, 1, 2)));
+		System.out
+				.println(Arrays.deepToString(f.floodFillRecurssion(new int[][] { { 0, 0, 0 }, { 0, 1, 1 } }, 1, 1, 1)));
+		System.out
+				.println(Arrays.deepToString(f.floodFillRecurssion(new int[][] { { 0, 0, 0 }, { 0, 0, 0 } }, 1, 1, 3)));
+
+		System.out
+				.println(Arrays.deepToString(f.floodFillIterative(new int[][] { { 0, 0, 0 }, { 0, 1, 1 } }, 1, 1, 2)));
+		System.out
+				.println(Arrays.deepToString(f.floodFillIterative(new int[][] { { 0, 0, 0 }, { 0, 1, 1 } }, 1, 1, 1)));
+		System.out
+				.println(Arrays.deepToString(f.floodFillIterative(new int[][] { { 0, 0, 0 }, { 0, 0, 0 } }, 1, 1, 3)));
 
 	}
 
@@ -55,6 +71,61 @@ public class FloodFill {
 
 		}
 		return image;
+	}
+
+	public int[][] floodFillRecurssion(int[][] image, int sr, int sc, int newColor) {
+		if (image.length == 0) {
+			return image;
+		}
+		int oldColor = image[sr][sc];
+		if (image[sr][sc] != newColor) {
+			fill(image, sr, sc, newColor, oldColor);
+		}
+		return image;
+	}
+
+	private void fill(int[][] image, int sr, int sc, int newColor, int oldColor) {
+		if (sr < 0 || sc < 0 || sr >= image.length || sc >= image[0].length || image[sr][sc] == newColor
+				|| image[sr][sc] != oldColor) {
+			return;
+		}
+		image[sr][sc] = newColor;
+		fill(image, sr, sc + 1, newColor, oldColor);
+		fill(image, sr, sc - 1, newColor, oldColor);
+		fill(image, sr + 1, sc, newColor, oldColor);
+		fill(image, sr - 1, sc, newColor, oldColor);
+
+	}
+
+	public int[][] floodFillIterative(int[][] image, int sr, int sc, int newColor) {
+		if (image.length == 0) {
+			return image;
+		}
+		int oldColor = image[sr][sc];
+		if (image[sr][sc] != newColor) {
+			fill2(image, sr, sc, newColor, oldColor);
+		}
+		return image;
+	}
+
+	private void fill2(int[][] image, int sr, int sc, int newColor, int oldColor) {
+		Deque<int[]> stack = new ArrayDeque<>();
+		stack.push(new int[] { sr, sc });
+		while (!stack.isEmpty()) {
+			int[] node = stack.pop();
+			sr = node[0];
+			sc = node[1];
+			if (sr < 0 || sc < 0 || sr >= image.length || sc >= image[0].length || image[sr][sc] == newColor
+					|| image[sr][sc] != oldColor) {
+				continue;
+			}
+			image[sr][sc] = newColor;
+			stack.push(new int[] { sr, sc + 1 });
+			stack.push(new int[] { sr, sc - 1 });
+			stack.push(new int[] { sr + 1, sc });
+			stack.push(new int[] { sr - 1, sc });
+		}
+
 	}
 
 }

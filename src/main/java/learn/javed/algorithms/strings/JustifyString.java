@@ -1,4 +1,4 @@
-S
+
 package learn.javed.algorithms.strings;
 
 public class JustifyString {

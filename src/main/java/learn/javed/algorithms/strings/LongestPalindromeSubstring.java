@@ -10,11 +10,11 @@ public class LongestPalindromeSubstring {
 
 	public static void main(String[] args) {
 		LongestPalindromeSubstring lps = new LongestPalindromeSubstring();
-		System.out.println(lps.longestPalindrome("babad"));
-		System.out.println(lps.longestPalindrome("cbbd"));
-		System.out.println(lps.longestPalindrome("ac"));
-		System.out.println(lps.longestPalindrome("a"));
-		System.out.println(lps.longestPalindrome("asfasabccbaetetete"));
+//		System.out.println(lps.longestPalindrome("babad"));
+//		System.out.println(lps.longestPalindrome("cbbd"));
+//		System.out.println(lps.longestPalindrome("ac"));
+//		System.out.println(lps.longestPalindrome("a"));
+//		System.out.println(lps.longestPalindrome("asfasabccbaetetete"));
 		System.out.println(lps.longestPalindrome(
 				"esbtzjaaijqkgmtaajpsdfiqtvxsgfvijpxrvxgfumsuprzlyvhclgkhccmcnquukivlpnjlfteljvykbddtrpmxzcrdqinsnlsteonhcegtkoszzonkwjevlasgjlcquzuhdmmkhfniozhuphcfkeobturbuoefhmtgcvhlsezvkpgfebbdbhiuwdcftenihseorykdguoqotqyscwymtjejpdzqepjkadtftzwebxwyuqwyeegwxhroaaymusddwnjkvsvrwwsmolmidoybsotaqufhepinkkxicvzrgbgsarmizugbvtzfxghkhthzpuetufqvigmyhmlsgfaaqmmlblxbqxpluhaawqkdluwfirfngbhdkjjyfsxglsnakskcbsyafqpwmwmoxjwlhjduayqyzmpkmrjhbqyhongfdxmuwaqgjkcpatgbrqdllbzodnrifvhcfvgbixbwywanivsdjnbrgskyifgvksadvgzzzuogzcukskjxbohofdimkmyqypyuexypwnjlrfpbtkqyngvxjcwvngmilgwbpcsseoywetatfjijsbcekaixvqreelnlmdonknmxerjjhvmqiztsgjkijjtcyetuygqgsikxctvpxrqtuhxreidhwcklkkjayvqdzqqapgdqaapefzjfngdvjsiiivnkfimqkkucltgavwlakcfyhnpgmqxgfyjziliyqhugphhjtlllgtlcsibfdktzhcfuallqlonbsgyyvvyarvaxmchtyrtkgekkmhejwvsuumhcfcyncgeqtltfmhtlsfswaqpmwpjwgvksvazhwyrzwhyjjdbphhjcmurdcgtbvpkhbkpirhysrpcrntetacyfvgjivhaxgpqhbjahruuejdmaghoaquhiafjqaionbrjbjksxaezosxqmncejjptcksnoq"));
 		System.out.println(lps.longestPalindromeUsingSubstrin(
