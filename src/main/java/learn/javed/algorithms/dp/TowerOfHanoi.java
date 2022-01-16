@@ -3,11 +3,11 @@
 */
 package learn.javed.algorithms.dp;
 
-public class TowerOfHonai {
+public class TowerOfHanoi {
 	private int steps = 0;
 
 	public static void main(String[] args) {
-		TowerOfHonai t = new TowerOfHonai();
+		TowerOfHanoi t = new TowerOfHanoi();
 		t.hanoi(1, "A", "C", "B");
 		System.out.println("Steps for 1 disc ==> expected "+ ((int)Math.pow(2, 1) - 1) + " actual " + t.steps + "\n");
 		t.steps = 0;
