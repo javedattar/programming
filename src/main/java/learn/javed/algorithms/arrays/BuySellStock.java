@@ -3,6 +3,11 @@
 */
 package learn.javed.algorithms.arrays;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+
 /**
  * You are given an array prices where prices[i] is the price of a given stock
  * on the ith day.
@@ -42,6 +47,10 @@ public class BuySellStock {
 				"BuySellStock max profit multiple transactions 2 >> " + maxProfitMultipleTransactions2(prices3));
 		prices3 = new int[] { 3, 2, 6, 5, 0, 3 };
 		System.out.println("BuySellStock max profit K transactions >> " + maxProfitKTransactions(2, prices3));
+//		prices3 = new int[] { 3,3,5,0,0,3,1,4 };
+//		System.out.println("BuySellStock max profit K transactions >> " + maxProfit2Transaction(prices3));
+		prices3 = new int[] { 1,2 };
+		System.out.println("BuySellStock max profit K transactions >> " + maxProfit2Transaction(prices3));
 
 	}
 
@@ -116,4 +125,27 @@ public class BuySellStock {
 
 		return max;
 	}
+	
+	public static int maxProfit2Transaction(int[] prices) {
+        int maxProfit = 0, currMin = Integer.MAX_VALUE;
+        List<Integer> profits = new ArrayList<>();
+        //int prevMax = prices[0];
+        for(int i=1; i<prices.length; i++) {
+            if(currMin > prices[i-1]) {
+                currMin = prices[i-1];
+            } else if(prices[i-1] > prices[i]) {
+                profits.add(prices[i-1]-currMin);
+                currMin = prices[i];
+            } else if((i+1 == prices.length && prices[i] > currMin)) {
+            	profits.add(prices[i]-currMin);
+            }
+        }
+        Collections.sort(profits, Collections.reverseOrder());
+        int counter = 0;
+        while(counter < 2 && counter < profits.size()) {
+            maxProfit += profits.get(counter++);
+        }
+        return maxProfit;
+        
+    }
 }
