@@ -3,7 +3,10 @@
 */
 package learn.javed.algorithms.arrays;
 
+import java.util.Arrays;
+
 public class WordSearch {
+	int[][] wordCoordinates;
 
 	public static void main(String[] args) {
 		WordSearch ws = new WordSearch();
@@ -12,11 +15,14 @@ public class WordSearch {
 
 		System.out.println("Expected TRUE: Actual:> " + ws.exist(board, word));
 		board = new char[][] { { 'A', 'B', 'C', 'E' }, { 'S', 'F', 'C', 'S' }, { 'A', 'D', 'E', 'E' } };
+		System.out.println(Arrays.deepToString(ws.wordCoordinates));
 		word = "ABCB";
 		System.out.println("Expected FALSE: Actual:> " + ws.exist(board, word));
+		System.out.println(Arrays.deepToString(ws.wordCoordinates));
 		board = new char[][] { { 'a' } };
 		word = "b";
 		System.out.println("Expected FALSE: Actual:> " + ws.exist(board, word));
+		System.out.println(Arrays.deepToString(ws.wordCoordinates));
 
 	}
 
@@ -26,9 +32,11 @@ public class WordSearch {
 
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[i].length; j++) {
-				if (board[i][j] == word.charAt(0))
+				if (board[i][j] == word.charAt(0)) {
+					wordCoordinates = new int[word.length()][2];
 					if (dfs(board, word, i, j, 0))
 						return true;
+				}
 			}
 		}
 
@@ -43,6 +51,8 @@ public class WordSearch {
 			return false;
 
 		char temp = board[i][j];
+		wordCoordinates[count][0] = i;
+		wordCoordinates[count][1] = j;
 		board[i][j] = ' '; // remove char for backtracking
 
 		boolean found = dfs(board, word, i, j - 1, count + 1) || dfs(board, word, i, j + 1, count + 1)

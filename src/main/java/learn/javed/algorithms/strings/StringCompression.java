@@ -8,9 +8,11 @@ public class StringCompression {
 		char[] chars = { 'a', 'a', 'b', 'b', 'c', 'c', 'c' };
 		System.out.println("Length =" + compress(chars) + " resulting array" + Arrays.toString(chars));
 		char[] chars3 = { 'a', 'a', 'a', 'b', 'b', 'a', 'a' };
-		System.out.println("Length =" + compressWithConstantSpace(chars3) + " resulting array" + Arrays.toString(chars3));
-		char[] chars2 = { 'a', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b','c','d' };
-		System.out.println("Length =" + compressWithConstantSpace(chars2) + " resulting array" + Arrays.toString(chars2));
+		System.out
+				.println("Length =" + compressWithConstantSpace(chars3) + " resulting array" + Arrays.toString(chars3));
+		char[] chars2 = { 'a', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'c', 'd' };
+		System.out
+				.println("Length =" + compressWithConstantSpace(chars2) + " resulting array" + Arrays.toString(chars2));
 		char[] chars4 = new char[4];
 		System.out.println(" resulting array" + Arrays.toString(chars4));
 
@@ -58,7 +60,7 @@ public class StringCompression {
 		result.append(curr);
 		if (groupCounter > 1)
 			result.append(groupCounter);
-		
+
 		for (int i = 0; i < result.length(); i++) {
 			chars[i] = result.charAt(i);
 		}
@@ -68,59 +70,50 @@ public class StringCompression {
 		System.out.println(result);
 		return result.length();
 	}
-	
+
 	private static int compressWithConstantSpace(char[] chars) {
 		if (chars.length == 0) {
 			return chars.length;
 		}
 		int groupCounter = 1, index = 1;
-		for (int i = 0; i < chars.length-1; i++) {
-			if(chars[i] == chars[i+1]) {
+		for (int i = 0; i < chars.length - 1; i++) {
+			if (chars[i] == chars[i + 1]) {
 				groupCounter++;
-			}
-			else {
-				if(groupCounter > 1 && groupCounter < 10) {
-				chars[index++] = (char)(groupCounter + '0');
-				
-			} else if (groupCounter > 10) {
-				// find out number 10s, 100s or 1000s
-				int places = 1;
-				int count = groupCounter;
-				while(count >= 10) {
-					places *= 10;
-					count  = count / 10;
+			} else {
+				if (groupCounter > 1 && groupCounter < 10) {
+					chars[index++] = (char) (groupCounter + '0');
+
+				} else if (groupCounter >= 10) {
+					// find out number 10s, 100s or 1000s
+					index = handleMoreThanTen(chars, groupCounter, index);
 				}
-				while(places != 0) {
-					int digit = groupCounter / places;
-					chars[index++] = (char)(digit + '0');
-					places = places / 10;
-					groupCounter = groupCounter % 10;
-				}
-			}
 				groupCounter = 1;
-				chars[index++] = chars[i+1];
+				chars[index++] = chars[i + 1];
 			}
-				
-				
-			
+
 		}
-		if(groupCounter > 1 && groupCounter < 10) {
-			chars[index++] = (char)(groupCounter + '0');
-			
-		} else if (groupCounter > 10) {
+		if (groupCounter > 1 && groupCounter < 10) {
+			chars[index++] = (char) (groupCounter + '0');
+
+		} else if (groupCounter >= 10) {
 			// find out number 10s, 100s or 1000s
-			int places = 1;
-			int count = groupCounter;
-			while(count >= 10) {
-				places *= 10;
-				count  = count / 10;
-			}
-			while(places != 0) {
-				int digit = groupCounter / places;
-				chars[index++] = (char)(digit + '0');
-				places = places / 10;
-				groupCounter = groupCounter % 10;
-			}
+			index = handleMoreThanTen(chars, groupCounter, index);
+		}
+		return index;
+	}
+
+	private static int handleMoreThanTen(char[] chars, int groupCounter, int index) {
+		int places = 1;
+		int count = groupCounter;
+		while (count >= 10) {
+			places *= 10;
+			count = count / 10;
+		}
+		while (places != 0) {
+			int digit = groupCounter / places;
+			chars[index++] = (char) (digit + '0');
+			places = places / 10;
+			groupCounter = groupCounter % 10;
 		}
 		return index;
 	}
