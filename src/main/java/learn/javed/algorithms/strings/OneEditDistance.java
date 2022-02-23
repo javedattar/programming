@@ -14,45 +14,48 @@ public class OneEditDistance {
 	}
 
 	private static boolean isOneDistanceApart(String s, String t) {
-		
-		int[][] dp = new int[s.length()+1][t.length()+1];
-		
+
+		int[][] dp = new int[s.length() + 1][t.length() + 1];
+
 		for (int i = 1; i < dp.length; i++) {
 			for (int j = 1; j < dp[0].length; j++) {
-				if(s.charAt(i-1) == t.charAt(j-1) ) {
-					dp[i][j] = dp[i-1][j-1];
+				if (s.charAt(i - 1) == t.charAt(j - 1)) {
+					dp[i][j] = dp[i - 1][j - 1];
 				} else {
-					dp[i][j] = 1+ Math.min(dp[i][j-1], Math.min(dp[i-1][j-1], dp[i-1][j]));
+					dp[i][j] = 1 + Math.min(dp[i][j - 1], Math.min(dp[i - 1][j - 1], dp[i - 1][j]));
 				}
 			}
 		}
-		return dp[dp.length-1][dp[0].length-1] == 1;
+		return dp[dp.length - 1][dp[0].length - 1] == 1;
 	}
-	
+
 	private static boolean isOneDistanceApart2(String s, String t) {
-		if (s == null && t == null) return true;
+		if (s == null && t == null)
+			return true;
 
-        int len1 = s.length();
-        int len2 = t.length();
+		int len1 = s.length();
+		int len2 = t.length();
 
-        if (s.equals(t)) return false;
+		if (len1 > len2)
+			return isOneDistanceApart2(t, s);
 
-        if (len1 > len2)
-            return isOneDistanceApart2(t, s);
+		if (s.equals(t) || len2 - len1 > 1)
+			return false;
 
-        for (int i = 0; i < len1; i++) {
-            // if current chars not same, for same len string, we can exclude these chars and rest of the string should match
-            // Otherwise, as first string is smaller than second one, we just need to skip char from second string
-            // and match with current remaining string
-            if (s.charAt(i) != t.charAt(i)) {
-                if (len1 == len2)
-                    return s.substring(i + 1).equals(t.substring(i + 1));
-                else
-                    return s.substring(i).equals(t.substring(i + 1));
-            }
-        }
+		for (int i = 0; i < len1; i++) {
+			// if current chars not same, for same len string, we can exclude these chars and rest of the string should
+			// match
+			// Otherwise, as first string is smaller than second one, we just need to skip char from second string
+			// and match with current remaining string
+			if (s.charAt(i) != t.charAt(i)) {
+				if (len1 == len2)
+					return s.substring(i + 1).equals(t.substring(i + 1));
+				else
+					return s.substring(i).equals(t.substring(i + 1));
+			}
+		}
 
-        return true;
+		return true;
 	}
 
 }

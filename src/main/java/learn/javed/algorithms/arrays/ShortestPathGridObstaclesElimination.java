@@ -13,7 +13,9 @@ public class ShortestPathGridObstaclesElimination {
 		ShortestPathGridObstaclesElimination obj = new ShortestPathGridObstaclesElimination();
 //		obj.shortestPath(grid, 1);
 		System.out.println(obj.shortestPath(grid, 0));
+		System.out.println(obj.shortestPathDfs(grid, 0));
 		grid = new int[][] { { 0, 1, 1 }, { 1, 1, 1 }, { 1, 0, 0 } };
+		System.out.println(obj.shortestPathDfs(grid, 1));
 		System.out.println(obj.shortestPath(grid, 1));
 //		obj.shortestPath(grid, 1);
 //		System.out.println(obj.numSteps);
@@ -97,6 +99,10 @@ public class ShortestPathGridObstaclesElimination {
 						0, 0, 0, 0, 0, 0 } };
 
 		System.out.println(obj.shortestPath(grid, 5));
+		grid = new int[][] { { 0, 1, 0, 0, 0, 1, 0, 0 }, { 0, 1, 0, 1, 0, 1, 0, 1 }, { 0, 0, 0, 1, 0, 0, 1, 0 } };
+		System.out.println(obj.shortestPath(grid, 1));
+		grid = new int[][] { { 0, 1, 1 }, { 1, 1, 1 }, { 1, 0, 0 } };
+		System.out.println(obj.shortestPathDfs(grid, 3));
 
 	}
 
@@ -156,21 +162,21 @@ public class ShortestPathGridObstaclesElimination {
 	 */
 
 	public class GridNode implements Comparable<GridNode> {
-		int i;
-		int j;
+		int row;
+		int col;
 		int k;
 		int steps;
 		int[] target;
 //		int manahattonDistance = target[0] - i + target[1] - j - 2;
 		int estimation;
 
-		public GridNode(int i, int j, int k, int steps, int[] target) {
-			this.i = i;
-			this.j = j;
+		public GridNode(int row, int col, int k, int steps, int[] target) {
+			this.row = row;
+			this.col = col;
 			this.k = k;
 			this.steps = steps;
 			this.target = target;
-			int manahattonDistance = target[0] - i + target[1] - j - 2;
+			int manahattonDistance = target[0] - row + target[1] - col - 2;
 			estimation = manahattonDistance + steps;
 		}
 
@@ -185,7 +191,7 @@ public class ShortestPathGridObstaclesElimination {
 
 			if (obj instanceof GridNode) {
 				GridNode that = (GridNode) obj;
-				return this.i == that.i && this.j == that.j;
+				return this.row == that.row && this.col == that.col && this.k == that.k;
 			}
 
 			return false;
@@ -194,7 +200,7 @@ public class ShortestPathGridObstaclesElimination {
 		@Override
 		public int hashCode() {
 			// TODO Auto-generated method stub
-			return 99909 + i + j;
+			return 99909 + row + col + k;
 		}
 
 	}
@@ -203,7 +209,9 @@ public class ShortestPathGridObstaclesElimination {
 		System.out.println(grid.length + " x " + grid[0].length);
 		Set<GridNode> visited = new HashSet<>();
 		PriorityQueue<GridNode> visiting = new PriorityQueue<>();
-		visiting.add(new GridNode(0, 0, k, 0, new int[] { grid.length, grid[0].length }));
+		GridNode gridNode = new GridNode(0, 0, k, 0, new int[] { grid.length, grid[0].length });
+		visiting.add(gridNode);
+		visited.add(gridNode);
 
 		return bfs(grid, visiting, visited);
 	}
@@ -212,33 +220,39 @@ public class ShortestPathGridObstaclesElimination {
 		while (!visiting.isEmpty()) {
 			GridNode gridNode = visiting.poll();
 
-			if (gridNode.i == gridNode.target[0] - 1 && gridNode.j == gridNode.target[1] - 1) {
-				return gridNode.steps;
-			}
-			if (gridNode.k >= gridNode.estimation - gridNode.steps) {
+			int remainingMinimumDistance = gridNode.estimation - gridNode.steps;
+			if (gridNode.k >= remainingMinimumDistance) {
 				return gridNode.estimation;
 			}
+			if (gridNode.row == gridNode.target[0] - 1 && gridNode.col == gridNode.target[1] - 1) {
+				return gridNode.steps;
+			}
 
-			int[][] neighbors = { { gridNode.i, gridNode.j + 1 }, { gridNode.i + 1, gridNode.j },
-					{ gridNode.i, gridNode.j - 1 }, { gridNode.i - 1, gridNode.j } };
+			int[][] neighbors = { { gridNode.row, gridNode.col + 1 }, { gridNode.row + 1, gridNode.col },
+					{ gridNode.row, gridNode.col - 1 }, { gridNode.row - 1, gridNode.col } };
 
 			for (int[] neighbor : neighbors) {
-				if (neighbor[0] < 0 || neighbor[0] >= grid.length || neighbor[1] < 0 || neighbor[1] >= grid[0].length) {
+				int nextRow = neighbor[0];
+				int nextCol = neighbor[1];
+				if (nextRow < 0 || nextRow >= grid.length || nextCol < 0 || nextCol >= grid[0].length) {
 					continue;
 				}
-				int k = gridNode.k - grid[neighbor[0]][neighbor[1]];
-				if (k >= gridNode.estimation - gridNode.steps + 1) {
-					return gridNode.estimation + 1;
+				int newElemination = gridNode.k - grid[nextRow][nextCol];
+				GridNode nextNode = new GridNode(nextRow, nextCol, newElemination, gridNode.steps + 1, gridNode.target);
+//				if (newElemination >= gridNode.estimation - gridNode.steps + 1) {
+//					return gridNode.estimation + 1;
+//				}
+				if (newElemination >= 0 && !visited.contains(nextNode)) {
+					visiting.add(nextNode);
+					visited.add(nextNode);
 				}
-				if (k >= 0)
-					visiting.add(new GridNode(neighbor[0], neighbor[1], k, gridNode.steps + 1, gridNode.target));
 			}
 			//
-			if (!visited.contains(gridNode)) {
-				visited.add(gridNode);
-			}
+//			if (!visited.contains(gridNode)) {
+//				visited.add(gridNode);
+//			}
 		}
-		return 0;
+		return -1;
 	}
 
 }
