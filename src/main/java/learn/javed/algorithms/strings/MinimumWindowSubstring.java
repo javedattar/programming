@@ -41,8 +41,8 @@ public class MinimumWindowSubstring {
 		String result = "";
 		while (start <= s.length() - target.length() && end <= s.length()) {
 			String temp = s.substring(start, end);
-			if (check(target, temp)) {
-				if (min > temp.length()) {
+			if (check(target, s, start, end)) {
+				if (min > end-start) {
 					min = temp.length();
 					result = temp;
 				}
@@ -56,16 +56,16 @@ public class MinimumWindowSubstring {
 
 	}
 
-	public boolean check(String target, String temp) {
+	public boolean check(String target, String source, int start, int end) {
 
 		int[] ds = new int[256];
 		char[] sa = target.toCharArray();
-		char[] ta = temp.toCharArray();
+//		char[] ta = temp.toCharArray();
 		for (int i = 0; i < sa.length; i++) {
 			ds[sa[i]] += 1;
 		}
-		for (int i = 0; i < ta.length; i++) {
-			ds[ta[i]] -= 1;
+		for (int i = start; i < end; i++) {
+			ds[source.charAt(i)] -= 1;
 		}
 		for (int val : ds) {
 			if (val > 0) {
