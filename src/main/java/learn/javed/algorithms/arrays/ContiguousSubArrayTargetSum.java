@@ -3,7 +3,7 @@
 */
 package learn.javed.algorithms.arrays;
 
-public class ContigiousSubArrayTargetSum {
+public class ContiguousSubArrayTargetSum {
 
 	public static void main(String[] args) {
 		System.out.println("ContigiousSubArrayTargetSum.main() countSubarraysSlidingWindow "
