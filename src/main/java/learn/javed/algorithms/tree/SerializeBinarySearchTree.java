@@ -109,6 +109,7 @@ public class SerializeBinarySearchTree {
 		List<String> serializedNodes = new ArrayList<>();
 		Deque<TreeNode> queue = new ArrayDeque<>();
 		queue.add(root);
+		queue.add(new TreeNode(Integer.MIN_VALUE));
 		_serialize(queue, serializedNodes);
 		System.out.println(String.join(",", serializedNodes));
 		return String.join(",", serializedNodes);
@@ -116,15 +117,19 @@ public class SerializeBinarySearchTree {
 
 	private static void _serialize(Deque<TreeNode> queue, List<String> serializedNodes) {
 		while (!queue.isEmpty()) {
+
 			TreeNode node = queue.poll();
+			if (node.val == Integer.MIN_VALUE) {
+				if (!queue.isEmpty())
+					queue.add(new TreeNode(Integer.MIN_VALUE));
+				continue;
+			}
 			if (node.val == -1) {
 				serializedNodes.add("-1");
 				continue;
 			}
 			serializedNodes.add("" + node.val);
-			if (node.left == null && node.right == null) {
-				continue;
-			}
+
 			if (node.left == null)
 				queue.offer(new TreeNode(-1));
 			else
