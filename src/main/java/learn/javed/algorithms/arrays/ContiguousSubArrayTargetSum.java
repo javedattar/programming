@@ -23,24 +23,21 @@ public class ContiguousSubArrayTargetSum {
 
 	private static int countSubarraysSlidingWindow(int[] arr, int target) {
 		counter = 0;
-		int i = 0, j = 0;
-		while (i < arr.length) {
-			countCombo(arr, target, i++, j++);
+		int j = 0;
+		while (j < arr.length) {
+			countCombo(arr, target, j++);
 		}
 		return counter;
 	}
 
-	private static void countCombo(int[] arr, int target, int i, int j) {
+	private static void countCombo(int[] arr, int target, int j) {
 		int subArraySum = 0;
-		while (j <= arr.length) {
+		while (j < arr.length) {
+			subArraySum += arr[j++];
 			if (target == subArraySum) {
 				counter++;
 			}
-			if (j == arr.length)
-				break;
 
-			subArraySum += arr[j++];
 		}
-
 	}
 }
