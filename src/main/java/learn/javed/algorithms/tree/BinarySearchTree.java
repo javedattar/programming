@@ -12,14 +12,14 @@ public class BinarySearchTree {
 	TreeNode root;
 	List<Integer> trackerList;
 
-	class TreeNode {
-		int nodeValue;
-		TreeNode leftNode, rightNode;
-
-		public TreeNode(int value) {
-			nodeValue = value;
-		}
-	}
+//	class TreeNode {
+//		int val;
+//		TreeNode left, right;
+//
+//		public TreeNode(int value) {
+//			val = value;
+//		}
+//	}
 
 	public void insert(int value) {
 		root = insertItem(root, value);
@@ -30,10 +30,10 @@ public class BinarySearchTree {
 			currentNode = new TreeNode(value);
 			return currentNode;
 		}
-		if (currentNode.nodeValue < value) {
-			currentNode.rightNode = insertItem(currentNode.rightNode, value);
+		if (currentNode.val < value) {
+			currentNode.right = insertItem(currentNode.right, value);
 		} else {
-			currentNode.leftNode = insertItem(currentNode.leftNode, value);
+			currentNode.left = insertItem(currentNode.left, value);
 		}
 		return currentNode;
 	}
@@ -41,7 +41,7 @@ public class BinarySearchTree {
 	public TreeNode search(int searchValue, boolean doTrack) {
 		trackerList = new ArrayList<>();
 		TreeNode node = _search(root, searchValue, doTrack);
-		trackerList.add(root.nodeValue);
+		trackerList.add(root.val);
 		return node;
 	}
 
@@ -50,19 +50,19 @@ public class BinarySearchTree {
 			System.out.println("Couldn't find the number " + searchValue);
 			return currentNode;
 		}
-		if (searchValue == currentNode.nodeValue) {
+		if (searchValue == currentNode.val) {
 			System.out.println(String.format("Tree has number %d present in it", searchValue));
 			return currentNode;
 		}
-		if (searchValue > currentNode.nodeValue) {
-			TreeNode node = _search(currentNode.rightNode, searchValue, doTrack);
-			if (currentNode.rightNode != null)
-				this.trackerList.add(currentNode.rightNode.nodeValue);
+		if (searchValue > currentNode.val) {
+			TreeNode node = _search(currentNode.right, searchValue, doTrack);
+			if (currentNode.right != null)
+				this.trackerList.add(currentNode.right.val);
 			return node;
 		}
-		TreeNode node = _search(currentNode.leftNode, searchValue, doTrack);
-		if (currentNode.leftNode != null)
-			this.trackerList.add(currentNode.leftNode.nodeValue);
+		TreeNode node = _search(currentNode.left, searchValue, doTrack);
+		if (currentNode.left != null)
+			this.trackerList.add(currentNode.left.val);
 		return node;
 	}
 
@@ -80,18 +80,18 @@ public class BinarySearchTree {
 		if (currentNode == null) {
 			return;
 		}
-		_inOrderTraversal(currentNode.leftNode);
-		System.out.println(currentNode.nodeValue);
-		_inOrderTraversal(currentNode.rightNode);
+		_inOrderTraversal(currentNode.left);
+		System.out.println(currentNode.val);
+		_inOrderTraversal(currentNode.right);
 	}
 
 	private void _preOrderTraversal(TreeNode currentNode) {
 		if (currentNode == null) {
 			return;
 		}
-		System.out.println(currentNode.nodeValue);
-		_preOrderTraversal(currentNode.leftNode);
-		_preOrderTraversal(currentNode.rightNode);
+		System.out.println(currentNode.val);
+		_preOrderTraversal(currentNode.left);
+		_preOrderTraversal(currentNode.right);
 	}
 
 	public static void main(String[] args) {
@@ -105,7 +105,7 @@ public class BinarySearchTree {
 		bsTree.insert(70);
 		bsTree.insert(55);
 		bsTree.insert(58);
-		System.out.println("Root Node >> " + bsTree.root.nodeValue);
+		System.out.println("Root Node >> " + bsTree.root.val);
 		bsTree.search(20, true);
 		System.out.println("Tracker list" + bsTree.trackerList);
 		bsTree.search(58, false);

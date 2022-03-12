@@ -71,15 +71,15 @@ public class SerializeBinarySearchTree {
 //			_addChildren(parentNode.right, rightChildPosition, numbers);
 //		}
 //	}
-
-	private int height(TreeNode node) {
-		if (node == null) {
-			return 0;
-		}
-		int leftHeight = height(node.left);
-		int rightHeight = height(node.right);
-		return 1 + Math.max(leftHeight, rightHeight);
-	}
+//
+//	private int height(TreeNode node) {
+//		if (node == null) {
+//			return 0;
+//		}
+//		int leftHeight = height(node.left);
+//		int rightHeight = height(node.right);
+//		return 1 + Math.max(leftHeight, rightHeight);
+//	}
 
 	public static void main(String[] args) {
 		SerializeBinarySearchTree bs = new SerializeBinarySearchTree();

@@ -6,8 +6,6 @@ package learn.javed.algorithms.tree;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import learn.javed.algorithms.tree.BinarySearchTree.TreeNode;
-
 public class LowestCommonAncestor {
 
 	// Given a binary search tree find out lower common ancestor
@@ -22,16 +20,16 @@ public class LowestCommonAncestor {
 		bsTree.insert(70);
 		bsTree.insert(55);
 		bsTree.insert(58);
-		longestCommonAncestor(bsTree, 58, 70);
-		longestCommonAncestor(bsTree, 58, 20);
-		TreeNode commonNode = longestCommonAncestor2(bsTree.root, bsTree.search(58, true), bsTree.search(70, true));
-		System.out.println(commonNode.nodeValue);
-		commonNode = longestCommonAncestor2(bsTree.root, bsTree.search(58, true), bsTree.search(20, true));
-		System.out.println(commonNode.nodeValue);
+		lowestCommonAncestor(bsTree, 58, 70);
+		lowestCommonAncestor(bsTree, 58, 20);
+		TreeNode commonNode = lowestCommonAncestor2(bsTree.root, bsTree.search(58, true), bsTree.search(70, true));
+		System.out.println(commonNode.val);
+		commonNode = lowestCommonAncestor2(bsTree.root, bsTree.search(58, true), bsTree.search(20, true));
+		System.out.println(commonNode.val);
 
 	}
 
-	private static void longestCommonAncestor(BinarySearchTree bsTree, int val1, int val2) {
+	private static void lowestCommonAncestor(BinarySearchTree bsTree, int val1, int val2) {
 		bsTree.search(val1, true);
 		List<Integer> trackerList = bsTree.trackerList;
 		bsTree.search(val2, true);
@@ -41,13 +39,12 @@ public class LowestCommonAncestor {
 		System.out.println("Lowest Common ancestor >> " + commonNodes.get(0));
 	}
 
-	private static BinarySearchTree.TreeNode longestCommonAncestor2(BinarySearchTree.TreeNode root,
-			BinarySearchTree.TreeNode val1, BinarySearchTree.TreeNode val2) {
-		if (root.nodeValue > val1.nodeValue && root.nodeValue > val2.nodeValue) {
-			return longestCommonAncestor2(root.leftNode, val1, val2);
+	private static TreeNode lowestCommonAncestor2(TreeNode root, TreeNode val1, TreeNode val2) {
+		if (root.val > val1.val && root.val > val2.val) {
+			return lowestCommonAncestor2(root.left, val1, val2);
 		}
-		if (root.nodeValue < val1.nodeValue && root.nodeValue < val2.nodeValue) {
-			return longestCommonAncestor2(root.rightNode, val1, val2);
+		if (root.val < val1.val && root.val < val2.val) {
+			return lowestCommonAncestor2(root.right, val1, val2);
 		}
 		return root;
 	}
