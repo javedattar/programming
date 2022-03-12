@@ -25,6 +25,7 @@ public class SortedCircularLinkedList {
 		newNode = list.insert(newNode, 5);
 		print(newNode);
 		newNode = list.insert(newNode, 13);
+		newNode = list.insert(newNode, 0);
 		print(newNode);
 		newNode = list.insert(null, 10);
 		newNode = list.insert(newNode, 10);
@@ -42,13 +43,17 @@ public class SortedCircularLinkedList {
 
 	private static void print(ListNode newNode) {
 		ListNode currNode = newNode;
-
-		while (true) {
-			System.out.print(newNode.nodeValue + " -> ");
-			if (currNode.equals(newNode.next))
-				break;
+		while (currNode != newNode.next && newNode.nodeValue <= newNode.next.nodeValue) {
 			newNode = newNode.next;
 		}
+		// once you reach tail, move to next to go to smallest number
+		newNode = newNode.next;
+		currNode = newNode;
+		do {
+			System.out.print(newNode.nodeValue + " -> ");
+
+			newNode = newNode.next;
+		} while (currNode != newNode);
 		System.out.println("\n");
 	}
 
@@ -59,22 +64,22 @@ public class SortedCircularLinkedList {
 			newNode.next = newNode;
 			return newNode;
 		}
-		ListNode prev = null;
-
-		while (true) {
-			if (n.nodeValue <= newNode.nodeValue && newNode.nodeValue <= n.next.nodeValue)
-				break;
-			if (n.nodeValue > n.next.nodeValue && newNode.nodeValue > n.nodeValue)
-				break;
-			prev = n;
-
-			if (currNode.equals(n.next)) {
-				newNode.next = prev.next;
-				prev.next = newNode;
-				return newNode;
-			}
+		// get to the smallest element in linked list.
+		while (currNode != n.next && n.nodeValue <= n.next.nodeValue) {
 			n = n.next;
 		}
+		n = n.next;
+		currNode = n;
+
+		while (currNode != n.next) {
+			if (n.nodeValue <= newNode.nodeValue && newNode.nodeValue <= n.next.nodeValue)
+				break;
+			if (n.nodeValue > n.next.nodeValue)
+				break;
+
+			n = n.next;
+		}
+
 		newNode.next = n.next;
 		n.next = newNode;
 
