@@ -101,6 +101,7 @@ public class CardGame_II {
 			for (Map.Entry<String, Card> item : cards.entrySet()) {
 				sb.append(item.getKey()).append(" = ").append(item.getValue().value).append(" | ");
 			}
+			sb.replace(sb.length() - 2, sb.length(), "");
 			sb.append("]");
 			return sb.toString();
 		}
@@ -232,7 +233,7 @@ public class CardGame_II {
 			winnerHands.add(hand);
 			playerWonHands.put(handWinner.name, winnerHands);
 			numOfGames--;
-			Thread.sleep(300);
+//			Thread.sleep(300);
 		}
 		findGameWinner();
 	}
